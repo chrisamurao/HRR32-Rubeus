@@ -1,6 +1,7 @@
 //Add dependencies
 const express = require('express');
 const app = express();
+<<<<<<< a352a6101be2eec35780799a1b0e04b36cb5bb92
 
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -13,6 +14,15 @@ const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json()); //or some other type
 app.use(bodyParser.urlencoded({ extended: true }));
+=======
+const db = require('/../db/index.js');
+const apiHelper = require('/../lib/apiHelper.js');
+const bodyParser = require('body-parser');
+
+app.use(express.static(__dirname + '/../client/dist'));
+app.use(bodyParser.json()) //This should be adjusted towards the type of req.body we will get
+//app.use(bodyParser.text()) this is an alternative to json
+>>>>>>> idk lmao
 
 
 let port = process.env.PORT || 3000;
@@ -41,6 +51,7 @@ app.post('/saveUser', (req, res) => {
     let sendCallBack = res.send.bind(res)
     //db.save(req.body, callback)
 
+<<<<<<< a352a6101be2eec35780799a1b0e04b36cb5bb92
 
 
 
@@ -56,6 +67,8 @@ app.post('/', (req, res) => {
 
 
     // console.log('response to / from server', res);
+=======
+>>>>>>> idk lmao
 });
 
 
