@@ -4,7 +4,7 @@
   "description": "A greenfield app to get and display civic data",
   "main": "/server/index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
     "start": "node server/index.js",
     "develop": "webpack --mode development --watch",
     "server-dev": "nodemon server/index.js",
