@@ -38,7 +38,7 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
 
   // console.log('GET / to server', res);
-
+  res.status(200).send('Welcome to Disneyland!')
 });
 
 app.post('/login', (req, res, next) => {
@@ -102,3 +102,5 @@ app.put('/', (req, res) => {
 
   // console.log('response to / from server', res);
 });
+
+module.exports = app;
