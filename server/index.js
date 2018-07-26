@@ -68,9 +68,8 @@ app.post('/login', (req, res, next) => {
 // STATUS: to be integrated with front end
 
 app.post('/saveUser', (req, res, next) => {
-  // console.log('POST to /saveUser, req.body is:', req.body.zip)
-  // console.log('response to / from server', res);
-  console.log('req.body is', req.body);
+
+  console.log("POST to /saveUser, req.body is", req.body);
   const zip = req.body.zip;
   const region = req.body.region;
 
@@ -80,14 +79,12 @@ app.post('/saveUser', (req, res, next) => {
       res.send(JSON.stringify('Please enter valid ZIP code.'));
     } else {
       res.status(201);
-      //console.log(response);
-
+      console.log(response);
       res.send(apiHelpers.getOfficials(region, response));
     }
   });
 
   // uday will add the thing here
-
   // db.insertData(data, cb);
 });
 
@@ -106,5 +103,5 @@ app.get('/auth/google/callback',
     console.log('hello you submitted!');
     res.send('you are now logged in');
     console.log(req.user);
-    //res.redirect('/');
+    res.redirect('/');
   });

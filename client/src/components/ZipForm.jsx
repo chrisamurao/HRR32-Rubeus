@@ -6,7 +6,7 @@ export default class ZipForm extends Component {
   
     this.state = {
        zip: '',
-       tier: 'state',
+       region: 'state',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +20,7 @@ export default class ZipForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();    
-    this.props.onSubmit(this.state.zip, this.state.tier);
+    this.props.onSubmit(this.state.zip, this.state.region);
     this.setState({
       zip: ''
     })
@@ -45,16 +45,21 @@ export default class ZipForm extends Component {
             value="Submit" />
         </form>
         <div
+          style={{ display: "inline-block" }}
+          onClick={() => { this.setState({ region: 'county' }) }}>
+          Set State to COUNTY
+        </div>
+        <div
           style={{display: "inline-block"}}
-          onClick={() => { this.setState({ tier: 'state' })}}>
+          onClick={() => { this.setState({ region: 'state' })}}>
           Set State to STATE
         </div>
         <div
           style={{ display: "inline-block" }}
-          onClick={() => { this.setState({ tier: 'county' }) }}>
-          Set State to COUNTY
+          onClick={() => { this.setState({ region: 'country' }) }}>
+          Set State to COUNTRY
         </div>
-        {this.state.tier}
+        Region is: {this.state.region}
       </div>
     )
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import axios from 'axios';
-import ZipForm from './components/ZipForm.jsx'
-
+import ZipForm from './components/ZipForm.jsx';
+import LoginForm from './components/LoginForm.jsx';
+import ListView from './components/ListView.jsx';
 
 const styles = {
   master: {
@@ -30,12 +30,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: '',
-      tier: 'state'
+      tier: 'state',
+      currentView: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setUsername = this.setUsername.bind(this);
-    this.setPassword = this.setPassword.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleOAuth = this.handleOAuth.bind(this);
   }
 
   handleSubmit(inputZip, inputRegion) {
@@ -55,75 +54,27 @@ class App extends React.Component {
     })
   }
 
-  setUsername (event) {
-    this.setState({
-      username: event.target.value
-    })
-  }
+  handleOAuth() {
+    console.log('handleOAuth called');
 
-  setPassword (event) {
-    this.setState({
-      password: event.target.value
-    })
-  }
-
-  handleLogin (event) {
-    console.log('hello')
-    console.log(this.state.username, this.state.password)
-    axios.post('/login', {
-      username: this.state.username,
-      password: this.state.password
-      })
-    .then(function (response) {
-      console.log(response);
-    })
-  }
-
-
-
-  render () {
-    return (
-      <div style={styles.master}>
-        <h1 style={styles.headers}>App v1</h1>
-        <ZipForm onSubmit={(zip, region) => {this.handleSubmit(zip, region)}}/>
-
-
-        <input value={this.state.username} type="text" onChange={this.setUsername}/>
-          <br></br>
-        <input value={this.state.password} type="text" onChange={this.setPassword}/>
-          <br></br>
-        <button onClick={this.handleLogin}>login</button>
-
-
-      <ListView data={this.state.data} state={this.state.state}/>
-      </div>
-    )
-  }
-}
-
-class ListView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
   }
 
   render () {
-    var listOfReps = [];
-    for (var i = 0; i < this.props.data.length; i++){
-      listOfReps.push(
-        <div>
-          <p>{this.props.data[i].title}</p>
-          <p>{this.props.data[i].name}</p>
-          <p>{this.props.data[i].party}</p>
-          <br></br>
-          <br></br>
+    return <div style={styles.master}>
+        <div className="nav" style={styles.headers}>
+          <h1>App v1.1</h1>
+          <a href="auth/google">Login with Google</a>
+
         </div>
-      )
-    }
-    return listOfReps;
+        <ZipForm onSubmit={(zip, region) => this.handleSubmit(zip, region)} />
+        <LoginForm />
+        <ListView data={this.state.data} />
+      </div>;
   }
 }
+
+
+
 
 
 
