@@ -4,6 +4,7 @@ import axios from 'axios';
 import ZipForm from './components/ZipForm.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import ListView from './components/ListView.jsx';
+import MapContainer from './components/MapContainer.jsx';
 
 const styles = {
   master: {
@@ -66,6 +67,7 @@ class App extends React.Component {
           <a href="auth/google">Login with Google</a>
 
         </div>
+        <MapContainer/>
         <ZipForm onSubmit={(zip, region) => this.handleSubmit(zip, region)} />
         <LoginForm />
         <ListView data={this.state.data} />
