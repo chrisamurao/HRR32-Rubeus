@@ -5,7 +5,9 @@ import axios from 'axios';
 import ListView from './ListView.jsx';
 import colorHelper from './colorHelper.js'
 
-
+/**
+ Known bugs: Georgia doesn't work
+*/
 
 export default class MapContainer extends Component {
 
@@ -18,9 +20,9 @@ export default class MapContainer extends Component {
   }
 
   //maybe put this into the constructor?
+  //these are the native components for the svg map
   mapDimensions() {
     return {
-      //these are the native components for the svg map
       height: 593,
       width: 959,
     }
@@ -44,10 +46,6 @@ export default class MapContainer extends Component {
       }
     })
   };
-
-  colorState = (name, color) => {
-    return 
-  }
 
   // statesCustomConfig = (state, color) => {
   //   return {

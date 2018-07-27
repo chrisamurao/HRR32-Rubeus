@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import RepEntry from './RepEntry.jsx';
 
 const ListView = props => (
