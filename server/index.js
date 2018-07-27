@@ -67,13 +67,14 @@ app.post('/login', (req, res, next) => {
 // DESCRIPTION: This will respond to user input on the front-end and send back the appropriate data. req.body will be our friend here.
 // STATUS: to be integrated with front end
 
-app.post('/saveUser', (req, res, next) => {
+app.post('/reps', (req, res, next) => {
 
   console.log("POST to /saveUser, req.body is", req.body);
-  const zip = req.body.zip;
+  const locater = req.body.zip ? req.body.zip :
+                  req.body.address ? req.body.address : null;
   const region = req.body.region;
 
-  apiSearch.searchByZip(zip, (response) => {
+  apiSearch.searchByZip(locater, (response) => {
     if (response.error) {
       console.log(response.error);
       res.send(JSON.stringify('Please enter valid ZIP code.'));

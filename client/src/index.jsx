@@ -42,7 +42,7 @@ class App extends React.Component {
     event.preventDefault();
     console.log('current state:', inputZip, inputRegion);
 
-    axios.post('/saveUser', {
+    axios.post('/reps', {
       zip: inputZip,
       region: inputRegion
     })
@@ -50,6 +50,7 @@ class App extends React.Component {
       if (typeof(response.data) === 'String') {
         console.log(response.data);
       } else {
+        console.log(response.data);
         this.setState({ data: response.data })
       }
     })
