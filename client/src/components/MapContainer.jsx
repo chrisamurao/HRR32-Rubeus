@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import USAMap from 'react-usa-map';
 import './Map.css';
-
+import axios from 'axios';
+import ListView from './ListView.jsx'
 
 
 export default class MapContainer extends Component {
@@ -10,6 +11,7 @@ export default class MapContainer extends Component {
     super(props);
     this.state ={
       selectedState: '',
+      data: '',
     }
   }
 
@@ -20,10 +22,24 @@ export default class MapContainer extends Component {
     }
   }
 
+
   mapHandler = (event) => {
     console.log('event.target.dataset.name is', event.target.dataset.name);
     console.log('event.target.dataset is', event.target.dataset);
     this.setState({selectedState: event.target.dataset.name})
+
+    axios.post('/reps', {
+      location: event.target.dataset.name,
+      region: 'state'
+    })
+    .then(response => {
+      if (typeof(response.data) === 'String') {
+        console.log(response.data);
+      } else {
+        console.log(response.data);
+        this.setState({ data: response.data })
+      }
+    })
   };
 
   statesCustomConfig = () => {
@@ -60,6 +76,7 @@ export default class MapContainer extends Component {
           height={this.mapDimensions().height * .8}
         />
           You Chose {this.state.selectedState}
+        <ListView data={this.state.data}/>
       </div>
     )
   }

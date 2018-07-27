@@ -39,6 +39,7 @@ app.use(express.static(`${__dirname}/../client/dist`));
 // app.use(bodyParser.text()) this is an alternative to json
 const db = require('../db/index.js');
 const apiHelpers = require('../lib/apiHelper.js');
+const dataHelpers = require('../lib/dataHelpers.js')
 
 const apiSearch = require('../lib/apiSearch.js');
 
@@ -70,8 +71,9 @@ app.post('/login', (req, res, next) => {
 app.post('/reps', (req, res, next) => {
 
   console.log("POST to /saveUser, req.body is", req.body);
-  const locater = req.body.zip ? req.body.zip :
-                  req.body.address ? req.body.address : null;
+  const locater = req.body.zip ? req.body.zip 
+                  : req.body.location ? dataHelpers.abbrState(req.body.location, 'name') 
+                  : null;
   const region = req.body.region;
 
   apiSearch.searchByZip(locater, (response) => {
