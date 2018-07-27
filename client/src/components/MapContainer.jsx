@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import USAMap from 'react-usa-map';
 import './Map.css';
 import axios from 'axios';
-import ListView from './ListView.jsx'
+import ListView from './ListView.jsx';
+import colorHelper from './colorHelper.js'
+
 
 
 export default class MapContainer extends Component {
@@ -15,17 +17,18 @@ export default class MapContainer extends Component {
     }
   }
 
+  //maybe put this into the constructor?
   mapDimensions() {
     return {
+      //these are the native components for the svg map
       height: 593,
       width: 959,
     }
   }
 
-
   mapHandler = (event) => {
     console.log('event.target.dataset.name is', event.target.dataset.name);
-    console.log('event.target.dataset is', event.target.dataset);
+
     this.setState({selectedState: event.target.dataset.name})
 
     axios.post('/reps', {
@@ -42,21 +45,25 @@ export default class MapContainer extends Component {
     })
   };
 
-  statesCustomConfig = () => {
-    return {
-      "NJ": {
-        fill: "navy",
-        clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
-      },
-      "NY": {
-        // fill: "#CC0000",
+  colorState = (name, color) => {
+    return 
+  }
 
-      }
-    };
-  };
+  // statesCustomConfig = (state, color) => {
+  //   return {
+  //     "NJ": {
+  //       fill: "navy",
+  //       clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
+  //     },
+  //     [state]: {
+  //       fill: color,
+  //       clickHandler: (event) => console.log(`Custom handler for ${state}`, event.target.dataset)
+  //     }
+  //   };
+  // };
 
   render() {
-    
+    console.log('render called')
     return (
       <div style={{border: "dotted blue 2px"}}>
         <div>
@@ -70,10 +77,10 @@ export default class MapContainer extends Component {
         </div>
         <USAMap 
           onClick={this.mapHandler}
-          customize={this.statesCustomConfig()}
           title={"Choose your state"} 
           width={this.mapDimensions().width * .8}
           height={this.mapDimensions().height * .8}
+          customize={{[this.state.selectedState]: {fill: colorHelper(this.state.data)}}}
         />
           You Chose {this.state.selectedState}
         <ListView data={this.state.data}/>
