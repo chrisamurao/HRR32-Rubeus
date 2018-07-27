@@ -20,7 +20,7 @@ export default class OfficialCreateTownHall extends Component {
             <legend>Create a Town Hall:</legend>
             Title: <input type="text" /><br />
             Email: <input type="text" /><br />
-            Date of birth: <input type="datetime-local" />
+            Open until: <input type="datetime-local" />
           </fieldset>
         </form>
       </div>

@@ -5,7 +5,7 @@ import ZipForm from './components/ZipForm.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import ListView from './components/ListView.jsx';
 import MapContainer from './components/MapContainer.jsx';
-import CreateTownHall from './components/CreateTownHall.jsx';
+import TownHallContainer from './components/townhall/TownHallContainer.jsx';
 import './App.css';
 
 const styles = {
@@ -70,7 +70,7 @@ class App extends React.Component {
           <h1>App v1.1</h1>
           <a href="auth/google">Login with Google</a>
         </div>
-        <CreateTownHall />
+        <TownHallContainer />
         <MapContainer/>
         <ZipForm onSubmit={(zip, region) => this.handleSubmit(zip, region)} />
         <LoginForm />

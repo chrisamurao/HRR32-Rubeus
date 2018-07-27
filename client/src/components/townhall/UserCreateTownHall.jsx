@@ -50,7 +50,8 @@ export default class UserCreateTownHall extends Component {
     return (
       <div style={{border: "solid green 2px"}}>
         This is the User Create Town Hall Component.
-
+        This will need to RETRIEVE a list of CURRENT TOWN HALLS.
+        This will need to SEND a QUESTION to a CURRENT TOWN HALL.
 
         <form>
           <fieldset>

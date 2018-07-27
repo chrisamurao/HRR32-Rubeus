@@ -27,8 +27,8 @@ export default class CreateTownHall extends Component {
 
   render() {
     return (
-      <div>
-        This is the Town Hall Component.
+      <div style={{border:"dotted purple 2px"}}>
+        This is the Create Town Hall Component. This will display either a question form or a create town hall form, depending on the user status. In this example, both views are shown.
         {this.renderView()}
       </div>
     )
