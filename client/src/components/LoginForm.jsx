@@ -45,6 +45,9 @@ export default class LoginForm extends Component {
   render() {
     return (
       <div>
+        <div>
+          <a href="auth/google">Login with Google</a>
+        </div>
         <input
           value={this.state.username}
           type="text"

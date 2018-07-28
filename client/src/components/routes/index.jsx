@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-import App from '../../index.jsx';
 import TownHallContainer from '../townhall/TownHallContainer.jsx';
 import MapContainer from '../MapContainer.jsx';
 import ZipForm from '../ZipForm.jsx';
+import LoginForm from '../LoginForm.jsx';
 
 const Routes = () => (
   <BrowserRouter>
@@ -31,6 +31,8 @@ const Routes = () => (
       <Route path="/map" component={MapContainer} />
       <Route path="/townhall" component={TownHallContainer} />
       <Route path="/zip" component={ZipForm} />
+      <Route path="/login" component={LoginForm} />
+
 
 
     </div>

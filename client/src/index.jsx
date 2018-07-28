@@ -44,7 +44,6 @@ class App extends React.Component {
     return <div style={styles.master}>
         <div className="nav" style={styles.headers}>
           <h1>App v1.1</h1>
-          <a href="auth/google">Login with Google</a>
         </div>
         <Routes />
       </div>;
