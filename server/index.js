@@ -42,11 +42,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // app.use(bodyParser.text()) this is an alternative to json
-// app.use(session({
-//   secret: 'americaisthebest',
-//   resave: true,
-//   saveUninitialized: true,
-// }));
+
+const db = require('../db/index.js');
+const apiHelpers = require('../lib/apiHelper.js');
+const dataHelpers = require('../lib/dataHelpers.js')
+
+const apiSearch = require('../lib/apiSearch.js');
+
+app.use(bodyParser.json()); // This should be adjusted towards the type of req.body we will get
+// app.use(bodyParser.text()); //or some other type
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+// app.use(bodyParser.text()) this is an alternative to json
+app.use(session({
+  secret: 'americaisthebest',
+  resave: true,
+  saveUninitialized: true,
+}));
+
 
 const port = process.env.PORT || 3000;
 

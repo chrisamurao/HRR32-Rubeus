@@ -8,6 +8,7 @@ import MapContainer from './components/MapContainer.jsx';
 import TownHallContainer from './components/townhall/TownHallContainer.jsx';
 import './App.css';
 
+
 const styles = {
   master: {
     alignContent: "center",
