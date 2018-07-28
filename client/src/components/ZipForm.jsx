@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import ListView from './ListView.jsx';
 
 export default class ZipForm extends Component {
   constructor(props) {
@@ -7,9 +9,28 @@ export default class ZipForm extends Component {
     this.state = {
        zip: '',
        region: 'state',
+       data: ''
     }
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleSubmit(inputZip, inputRegion) {
+    console.log('current state:', inputZip, inputRegion);
+
+    axios.post('/reps', {
+      zip: inputZip,
+      region: inputRegion
+    })
+      .then(response => {
+        if (typeof (response.data) === 'String') {
+          console.log(response.data);
+        } else {
+          console.log(response.data);
+          this.setState({ data: response.data })
+        }
+      })
   }
 
   handleChange(e) {
@@ -20,7 +41,7 @@ export default class ZipForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();    
-    this.props.onSubmit(this.state.zip, this.state.region);
+    this.handleSubmit(this.state.zip, this.state.region);
     this.setState({
       zip: ''
     })
@@ -63,6 +84,9 @@ export default class ZipForm extends Component {
           Set State to COUNTRY
         </div>
         Region is: {this.state.region}
+        <div>
+          <ListView data={this.state.data}/>
+        </div>
       </div>
     )
   }

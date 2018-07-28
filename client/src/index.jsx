@@ -7,6 +7,7 @@ import ListView from './components/ListView.jsx';
 import MapContainer from './components/MapContainer.jsx';
 import TownHallContainer from './components/townhall/TownHallContainer.jsx';
 import './App.css';
+import Routes from './components/routes/index.jsx';
 
 const styles = {
   master: {
@@ -37,31 +38,6 @@ class App extends React.Component {
       tier: 'state',
       currentView: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleOAuth = this.handleOAuth.bind(this);
-  }
-
-  handleSubmit(inputZip, inputRegion) {
-    event.preventDefault();
-    console.log('current state:', inputZip, inputRegion);
-
-    axios.post('/reps', {
-      zip: inputZip,
-      region: inputRegion
-    })
-    .then(response => {
-      if (typeof(response.data) === 'String') {
-        console.log(response.data);
-      } else {
-        console.log(response.data);
-        this.setState({ data: response.data })
-      }
-    })
-  }
-
-  handleOAuth() {
-    console.log('handleOAuth called');
-
   }
 
   render () {
@@ -70,16 +46,16 @@ class App extends React.Component {
           <h1>App v1.1</h1>
           <a href="auth/google">Login with Google</a>
         </div>
-        <TownHallContainer />
-        <MapContainer/>
-        <ZipForm onSubmit={(zip, region) => this.handleSubmit(zip, region)} />
-        <LoginForm />
-        <ListView data={this.state.data} />
+        <Routes />
       </div>;
   }
 }
 
-
+{/* <TownHallContainer />
+  <MapContainer />
+  <ZipForm />
+  <LoginForm />
+  <ListView data={this.state.data} /> */}
 
 
 
