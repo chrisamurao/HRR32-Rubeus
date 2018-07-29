@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 const fakeData = [
   {
@@ -16,7 +17,7 @@ const fakeData = [
 ];
 
 //this is a helper stateless component
-const Options = props => <select>{props.open.map((hall, i) => <option key={i}>{hall.townHallName}</option>)}</select>;
+const Options = props => <select>{props.open.map((hall, i) => <option key={i}>{hall}</option>)}</select>;
 
 //This should query the db for a list of open town halls.
 //Town halls are opened by 'officials'.
@@ -27,17 +28,25 @@ export default class UserCreateTownHall extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openTownHalls : fakeData,
+      fakeTownHalls: fakeData,
+      townHalls: [],
+
     }
   }
 
   //When component mounts, it should query the database for available town halls.
   //With this array of town halls, it should reflect them into the options list
-  componentDidMount(){
-    //call get request to server
-    //let's use a route called /townhall
+  
+  componentDidMount() {
+    this.getTownHalls();
+  }
 
-    //received town halls, setState to new data
+  getTownHalls() {
+    //send get request to server
+    axios.get('/alltownhalls').then(halls => {
+      console.log(halls.data);
+      this.setState({ townHalls: halls.data })
+    })
   }
 
   handleSubmit(){
@@ -56,7 +65,7 @@ export default class UserCreateTownHall extends Component {
         <form>
           <fieldset>
             <legend>Ask a Town Hall:</legend>
-            Select a Town Hall: <Options open={this.state.openTownHalls} /><br/>
+            Select a Town Hall: <Options open={this.state.townHalls} /><br/>
             Question: <textarea placeholder="Enter a Question Here."/><br/>
             <button>Submit</button>
           </fieldset>
