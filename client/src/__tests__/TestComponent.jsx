@@ -8,12 +8,13 @@ configure({ adapter: new Adapter() });
 export default class TestComponent extends Component {
   render() {
     return (
-      <div>
+      <div className="test">
         Hello Friends!
       </div>
     )
   }
 }
+
 describe('does TestComponent work', () => {
   it('should contain a div with hello world in it', () => {
     const wrapper = mount(<TestComponent />);

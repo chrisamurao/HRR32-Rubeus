@@ -1,37 +1,29 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import TestComponent from './TestComponent.jsx';
-
-import { configure } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import TestComponent from './TestComponent.jsx';
 
 configure({ adapter: new Adapter() });
 
+/**
+ * {@link https://github.com/airbnb/enzyme}
+ */
 
-// describe('<MyComponent />', () => {
-//   it('renders three <Foo /> components', () => {
-//     const wrapper = shallow(<MyComponent />);
-//     expect(wrapper.find(Foo)).to.have.length(3);
-//   });
+describe('test shallow rendering', () => {
 
-//   it('renders an `.icon-star`', () => {
-//     const wrapper = shallow(<MyComponent />);
-//     expect(wrapper.find('.icon-star')).to.have.length(1);
-//   });
+  xit('renders children when passed in', () => {
+    const wrapper = shallow((
+      <TestComponent>
+        <div className="unique" />
+      </TestComponent>
+    ));
+    //expect(wrapper.contains(<div className="unique" />)).toEqual(true);
+    //why doesn't this work?
+  });
 
-//   it('renders children when passed in', () => {
-//     const wrapper = shallow((
-//       <MyComponent>
-//         <div className="unique" />
-//       </MyComponent>
-//     ));
-//     expect(wrapper.contains(<div className="unique" />)).to.equal(true);
-//   });
+  it('should render a `.test`', () => {
+    const wrapper = shallow(<TestComponent />);
+    expect(wrapper.find('.test').length).toEqual(1);
+  });
 
-//   it('simulates click events', () => {
-//     const onButtonClick = sinon.spy();
-//     const wrapper = shallow(<Foo onButtonClick={onButtonClick} />);
-//     wrapper.find('button').simulate('click');
-//     expect(onButtonClick).to.have.property('callCount', 1);
-//   });
-// });
+});
