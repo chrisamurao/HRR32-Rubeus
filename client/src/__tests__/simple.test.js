@@ -17,13 +17,18 @@ describe('test shallow rendering', () => {
         <div className="unique" />
       </TestComponent>
     ));
-    //expect(wrapper.contains(<div className="unique" />)).toEqual(true);
+    expect(wrapper.contains(<div className="unique" />)).toEqual(true);
     //why doesn't this work?
   });
 
   it('should render a `.test`', () => {
     const wrapper = shallow(<TestComponent />);
     expect(wrapper.find('.test').length).toEqual(1);
+  });
+
+  it('should not render a `.nottest`', () => {
+    const wrapper = shallow(<TestComponent />);
+    expect(wrapper.find('.nottest').length).toEqual(0);
   });
 
 });
