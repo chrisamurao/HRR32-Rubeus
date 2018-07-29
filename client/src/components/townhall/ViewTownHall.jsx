@@ -24,10 +24,11 @@ export default class ViewTownHall extends Component {
 
   getQuestions() {
     console.log('getquestions called');
-    axios.get('/questions').then(q => {
-      console.log(q)
-      this.setState({questions: q.data})
-    })
+    axios.get('/questions')
+      .then(q => {
+        console.log(q)
+        this.setState({questions: q.data})
+      })
   }
 
   //render

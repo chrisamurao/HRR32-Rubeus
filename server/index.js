@@ -113,7 +113,8 @@ app.get('/test', utils.authCheck, (req, res) => {
 
 //Temp function for Mubeen front-end prior to RR implementation
 app.get('/checkuser', utils.authCheck, (req, res) => {
-  res.send('user exists');
+  console.log('passed authcheck')
+  req.user ? res.send(req.user) : res.send('whoops');
 });
 
 
@@ -201,6 +202,9 @@ app.post('/question', function(req, res) {
   const hallName = String(req.body.townHallName);
   //change the user ID to be from hard coded to user id
   const userRowId = Number(req.body.userRowId);
+  //
+  console.log('question posted', req.body)
+  //
   townhalls.createQuestion(question, userRowId, hallName).then(results => res.status(201).send(results));
 });
 

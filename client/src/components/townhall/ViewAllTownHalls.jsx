@@ -16,13 +16,6 @@ const fakeData = [
   }
 ];
 
-// const TownHallEntry = props => (
-
-//   <select>{props.open.map((hall, i) => <option key={i}>{hall}</option>)}</select>;
-
-// )
-
-
 export default class ViewAllTownHalls extends Component {
 
   constructor(props) {
@@ -53,7 +46,7 @@ export default class ViewAllTownHalls extends Component {
         When users click on a town hall, they will see the questions within it.<br />
         This will send to the ViewTownHall component the name as a PROP. <br />
         Depending on whether we query all the data or some, we can make one or two AJAX calls.
-        { this.state.townHalls.length > 0 ? this.state.townHalls.map((hall, i)=> <div> {hall} </div>) : '' }
+        { this.state.townHalls.length > 0 ? this.state.townHalls.map((hall, i)=> <div key={i}> {hall} </div>) : '' }
       </div>
     )
   }
