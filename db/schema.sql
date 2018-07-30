@@ -1,7 +1,4 @@
-DROP DATABASE IF EXISTS greenfield;
-CREATE DATABASE greenfield;
-
-USE greenfield;
+USE heroku_d8331a8cbcce2bc;
 
 -- Create Table called users
 -- CREATE TABLE users (
@@ -23,8 +20,7 @@ CREATE TABLE users (
 CREATE TABLE townhalls (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
-  `createDate` DATETIME DEFAULT CURRENT_TIMESTAMP,
-  `closeDate` DATETIME ON UPDATE CURRENT_TIMESTAMP,
+  `createDate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8;
 
