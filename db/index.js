@@ -1,10 +1,14 @@
 //Database Connection and Functions
-var mysql = require('mysql');
+const mysql = require('mysql');
+const SQL_USER = process.env.SQL_USER || 'root';
+const SQL_PASS = process.env.SQL_PASS || '';
+const DATABASE_URL = process.env.DATABASE_URL || 'localhost';
 
-var connection = mysql.createConnection({
-  host      : 'localhost',
-  user      : 'root',
-  password  : '',
+
+const connection = mysql.createConnection({
+  host      : DATABASE_URL,
+  user      : SQL_USER,
+  password  : SQL_PASS,
   database  : 'greenfield'
 });
 
