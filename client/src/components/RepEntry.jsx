@@ -16,9 +16,10 @@ const RepEntry = props => (
       <p className="card-text">{props.rep.name} <br /> Party: {props.rep.party} </p>
       <p>{props.rep.phones[0] ? props.rep.phones[0] : ''}</p>
       {props.rep.urls ? <a href={props.rep.urls[0]} className="btn btn-primary">Website</a> : ''}
+      <br/>
       {props.rep.channels ? props.rep.channels.map(channel => {
         return (
-          <div><span> {channel.type === 'Facebook' ? <Facebook id={channel.id}/> : ''}
+          <div style={{display:"inline-block"}}><span> {channel.type === 'Facebook' ? <Facebook id={channel.id}/> : ''}
                 {channel.type === 'YouTube' ? <Youtube id={channel.id}/> :  ''} 
                 {channel.type === 'Twitter' ? <Twitter id={channel.id} /> : ''}
                 </span></div>)
