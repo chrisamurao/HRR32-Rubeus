@@ -13,8 +13,26 @@ connection.on('error', function (err) {
 Simple Test Function to verify MySql functionality - not used elsewhere
 */
 
+
 //***************************************
 
+
+function handleDisconnect(client) {
+  client.on('error', function (error) {
+    if (!error.fatal) return;
+    if (error.code !== 'PROTOCOL_CONNECTION_LOST') throw err;
+
+    console.error('> Re-connecting lost MySQL connection: ' + error.stack);
+
+    // NOTE: This assignment is to a variable from an outer scope; this is extremely important
+    // If this said `client =` it wouldn't do what you want. The assignment here is implicitly changed
+    // to `global.mysqlClient =` in node.
+    connection = mysql.createConnection(CLEARDB_DATABASE_URL);
+    handleDisconnect(mysqlClient);
+    connection.connect();
+  });
+};
+handleDisconnect(connection);
 
 //*************************************************
 // module.exports = {
