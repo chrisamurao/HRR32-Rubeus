@@ -48,13 +48,6 @@ app.use(bodyParser.json()); // This should be adjusted towards the type of req.b
 // app.use(bodyParser.text()); //or some other type
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(bodyParser.text()) this is an alternative to json
-app.use(session({
-  secret: 'americaisthebest',
-  resave: true,
-  saveUninitialized: true,
-}));
-
 
 const port = process.env.PORT || 3000;
 
@@ -117,8 +110,13 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('req.user is', req.user);
-    res.redirect('/');
+    res.redirect('/zip');
   });
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+})
 
 app.get('/test', utils.authCheck, (req, res) => {
   console.log('passed authCheck');
@@ -189,6 +187,14 @@ app.get('/login', function(req, res) {
 
 app.get('/zip', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  });
+});
+
+app.get('/chat', function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function (err) {
     if (err) {
       res.status(500).send(err)
     }
