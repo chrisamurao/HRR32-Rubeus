@@ -7,7 +7,7 @@ const Youtube = (props) => { return (<a href={`https://www.youtube.com/channel/$
 const Twitter = (props) => { return (<a href={`https://www.twitter.com/${props.id}`}><i className="fab fa-twitter-square"></i></a>) }
 
 const RepEntry = props => (
-  <div className="card col-md-8" style={{maxWidth: "20rem" }}>
+  <div className="card col-md-8 mx-auto" style={{maxWidth: "20rem" }}>
 
     <div className="card-body text-center">
       {props.rep.photoUrl ? <img className="card-img-top" src={props.rep.photoUrl} alt={props.rep.title} /> : ''}

@@ -49,47 +49,49 @@ export default class ZipForm extends Component {
 
   render() {
     return (
-      <div className="jumbotron">
-        <h1 class="display-4"> Find your representatives </h1>
-        <form style={{ display: "inline-block" }}>
-          <input
-            autoFocus="true"
-            name="zip"
-            type="text"
-            value={this.state.zip}
-            onChange={e => this.handleChange(e)}
-            placeholder="ZIP code" />
-        </form>
-        <div
-          className="btn btn-primary"
-          style={{ display: "inline-block" }}
-          onClick={() => { this.setState(
-            { region: 'county' }, () => {
-              this.handleSubmit(this.state.zip, this.state.region)
-              }) }}>
-          County
-        </div>
-        <div
-          className="btn btn-primary"
-          style={{ display: "inline-block", margin: "2px" }}
-          onClick={() => {
-            this.setState(
-              { region: 'state' }, () => {
+      <div className="container">
+        <div className="jumbotron">
+          <h1 class="display-4"> Find your representatives </h1>
+          <form style={{ display: "inline-block" }}>
+            <input
+              autoFocus="true"
+              name="zip"
+              type="text"
+              value={this.state.zip}
+              onChange={e => this.handleChange(e)}
+              placeholder="ZIP code" />
+          </form>
+          <div
+            className="btn btn-primary"
+            style={{ display: "inline-block" }}
+            onClick={() => { this.setState(
+              { region: 'county' }, () => {
                 this.handleSubmit(this.state.zip, this.state.region)
-              })
-          }}>
-          State
-        </div>
-        <div
-          className="btn btn-primary"
-          style={{ display: "inline-block" }}
-          onClick={() => {
-            this.setState(
-              { region: 'country' }, () => {
-                this.handleSubmit(this.state.zip, this.state.region)
-              })
-          }}>
-          Country
+                }) }}>
+            County
+          </div>
+          <div
+            className="btn btn-primary"
+            style={{ display: "inline-block", margin: "2px" }}
+            onClick={() => {
+              this.setState(
+                { region: 'state' }, () => {
+                  this.handleSubmit(this.state.zip, this.state.region)
+                })
+            }}>
+            State
+          </div>
+          <div
+            className="btn btn-primary"
+            style={{ display: "inline-block" }}
+            onClick={() => {
+              this.setState(
+                { region: 'country' }, () => {
+                  this.handleSubmit(this.state.zip, this.state.region)
+                })
+            }}>
+            Country
+          </div>
         </div>
         <div>
           <ListView data={this.state.data} />
