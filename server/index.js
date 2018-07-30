@@ -17,14 +17,14 @@ const townhalls = require('../db/townhalls.js');
 const apiHelpers = require('../lib/apiHelper.js');
 const dataHelpers = require('../lib/dataHelpers.js')
 const apiSearch = require('../lib/apiSearch.js');
-const config = require('../config/civic.js');
+const SECRET = process.env.SESSION_SECRET || require('../config/civic.js').SESSION_SECRET;
 const path = require("path");
 /************************************************
 Passport Related (Below)
 ************************************************/
 
 app.use(session({
-  secret: config.SESSION_SECRET,
+  secret: SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
@@ -35,7 +35,7 @@ const passportSetup = require('../config/passport-setup.js');
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cookieParser(config.SESSION_SECRET));
+app.use(cookieParser(SECRET));
 
 /************************************************/
 
@@ -106,7 +106,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('req.user is', req.user);
-    res.redirect('/zip');
+    res.redirect('/');
   });
 
 app.get('/logout', (req, res) => {
