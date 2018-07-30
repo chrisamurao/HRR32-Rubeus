@@ -2,9 +2,9 @@
 const mysql = require('mysql');
 const SQL_USER = process.env.SQL_USER || 'root';
 const SQL_PASS = process.env.SQL_PASS || '';
-const CLEARDB_DATABASE_URL = process.env.CLEARDB_DATABASE_URL || 'localhost';
+var CLEARDB_DATABASE_URL = process.env.CLEARDB_DATABASE_URL || 'localhost';
 
-const connection = mysql.createConnection(CLEARDB_DATABASE_URL);
+const connection = mysql.createPool(CLEARDB_DATABASE_URL);
 
 connection.on('error', function (err) {
   console.log(err.code); // 'ER_BAD_DB_ERROR'
