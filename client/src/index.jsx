@@ -38,7 +38,7 @@ class App extends React.Component {
       <div>
         <Nav />
         {this.state.isLoggedIn ? `Welcome, ${this.state.username}!` : "Log in!"}
-        <Routes loggedIn={this.state.isLoggedIn}/>
+        <Routes isLoggedIn={this.state.isLoggedIn}/>
       </div>
     )}
 }

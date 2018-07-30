@@ -51,12 +51,8 @@ app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 
-// app.listen(port, () => {
-//   console.log(`Hello from ${port}!`);
-// });
 //*********live-chat ***********//
 io.on('connection', (client) => {
-  //emitting evnets to client
   console.log(client.id);
   console.log('socket io connection online!');
   client.on('send_message', function(data) {

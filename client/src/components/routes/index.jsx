@@ -9,22 +9,24 @@ import Chat from '../Chat.jsx';
 const Routes = (props) => (
   <Router>
     <div>
-    <nav className="navbar navbar-expand-lg navbar-light  bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <ul className="navbar-nav mr-auto">
-        <li><Link to="/zip" className="navbar-brand">Imperio v0.9.1</Link></li>
+        <li><Link to="/" className="navbar-brand">Imperio v0.9.1</Link></li>
         <li><Link to="/townhall" className="nav-link">Town Hall</Link></li>
         <li><Link to="/map" className="nav-link">Map</Link></li>
         <li><Link to="/chat" className="nav-link">Chat</Link></li>
-        <li><Link to="/login" className="nav-link">Login</Link></li>
+        {!props.isLoggedIn ? <li><Link to="/login" className="nav-link">Login</Link></li>
+            : <a href="/logout" className="nav-link">Logout</a> }
       </ul>
     </nav>
 
     <Switch>
-      <Route path="/map" component={MapContainer} />
-      <Route path="/townhall" component={TownHallContainer} />
-      <Route path="/zip" component={ZipForm} />
-      <Route path="/login" component={LoginForm} />
-      <Route path="/chat" component={Chat} />
+      <Route path="/map" exact component={MapContainer} />
+      <Route path="/townhall" exact component={TownHallContainer} />
+      <Route path="/" exact component={ZipForm} />
+      <Route path="/login" exact component={LoginForm} />
+      <Route path="/chat" exact component={Chat} />
+      <Route path="/logout" exact component={MapContainer} />
     </Switch>
 
     </div>

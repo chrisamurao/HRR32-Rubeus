@@ -1,21 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ViewTownHall from './ViewTownHall.jsx'
-
-const fakeData = [
-  {
-    townHallName: "Senator Jeff's town hall",
-    closesAt: "somedate here."
-  },
-  {
-    townHallName: "Governor Fred's town hall",
-    closesAt: "somedate here."
-  },
-  {
-    townHallName: "House James's town hall",
-    closesAt: "somedate here."
-  }
-];
+import ViewTownHall from './ViewTownHall.jsx';
 
 export default class ViewAllTownHalls extends Component {
 

@@ -75,6 +75,7 @@ class Chat extends Component {
                   <div className="col-8">
                       <div className="card">
                         <div className="card-body">
+                  <h4>User Chat:</h4>
                   <div className="card-title"> {this.state.username ? `Chatting as: ${this.state.username}` : ''}</div>
                             <hr/>
                             <div className="messages">

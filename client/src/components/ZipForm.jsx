@@ -53,6 +53,7 @@ export default class ZipForm extends Component {
         <h1 class="display-4"> Find your representatives </h1>
         <form style={{ display: "inline-block" }}>
           <input
+            autoFocus="true"
             name="zip"
             type="text"
             value={this.state.zip}
