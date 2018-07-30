@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const db = require('../db/users.js');
 const PORT = process.env.PORT || 3000;
-const CALLBACK_URL = process.env.PORT ? `http://imperio-rubeus.herokuapp.com:${PORT}` : `http://localhost:${PORT}/auth/google/callback`;
+const CALLBACK_URL = process.env.PORT ? `http://imperio-rubeus.herokuapp.com:${PORT}/auth/google/callback` : `http://localhost:${PORT}/auth/google/callback`;
 
 
 /******************************************************************************
