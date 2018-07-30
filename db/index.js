@@ -2,15 +2,12 @@
 const mysql = require('mysql');
 const SQL_USER = process.env.SQL_USER || 'root';
 const SQL_PASS = process.env.SQL_PASS || '';
-const DATABASE_URL = process.env.DATABASE_URL || 'localhost';
+const CLEARDB_DATABASE_URL = process.env.CLEARDB_DATABASE_URL || 'localhost';
 
 
-const connection = mysql.createConnection({
-  host      : DATABASE_URL,
-  user      : SQL_USER,
-  password  : SQL_PASS,
-  database  : 'greenfield'
-});
+mysql://b42c64e282667c:d6ea66b1@us-cdbr-iron-east-04.cleardb.net/heroku_d8331a8cbcce2bc?reconnect=true
+
+const connection = mysql.createConnection(CLEARDB_DATABASE_URL);
 
 /*
 Simple Test Function to verify MySql functionality - not used elsewhere
