@@ -6,6 +6,9 @@ const CLEARDB_DATABASE_URL = process.env.CLEARDB_DATABASE_URL || 'localhost';
 
 const connection = mysql.createConnection(CLEARDB_DATABASE_URL);
 
+connection.on('error', function (err) {
+  console.log(err.code); // 'ER_BAD_DB_ERROR'
+});
 /*
 Simple Test Function to verify MySql functionality - not used elsewhere
 */
