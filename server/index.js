@@ -49,7 +49,7 @@ app.use(bodyParser.json()); // This should be adjusted towards the type of req.b
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 //*********live-chat ***********//
 io.on('connection', (client) => {
@@ -60,8 +60,8 @@ io.on('connection', (client) => {
     io.emit('receive_message', data);
   })
 });
- server.listen(port, () => {
-  console.log(`server listening from ${port}!`)
+ server.listen(PORT, () => {
+  console.log(`server listening from ${PORT}!`)
 });
 // ////******route requests*********///
 

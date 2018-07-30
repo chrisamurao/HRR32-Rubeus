@@ -13,7 +13,7 @@ class Chat extends Component {
             isLoggedIn: false,
         };
      
-        this.socket = io('localhost:3000');
+        this.socket = io();
         
         this.socket.on('receive_message', (data) => {
             console.log('client received message from server')

@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const db = require('../db/users.js');
+const PORT = process.env.PORT || 3000;
 
 
 /******************************************************************************
@@ -11,7 +12,7 @@ Description: to sign into passport, go to
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID || require('./civic.js').GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || require('./civic.js').GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    callbackURL: `http://localhost:${PORT}/auth/google/callback`
   },
   function(accessToken, refreshToken, profile, done) {
       //upon user providing passport details, check if user exists
